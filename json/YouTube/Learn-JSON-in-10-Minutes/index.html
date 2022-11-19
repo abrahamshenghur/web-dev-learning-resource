@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Example</title>
+</head>
+<body>
+    <div>
+        <img src="1-what-json-is.png">
+    </div>
+    <div>
+        <img src="2-json-types.png">
+    </div>
+    <div>
+        <img src="3-json-syntax.png">
+    </div>
+
+    <script type="text/javascript">
+        let companies =`
+            [
+                {
+                    "name": "Big Corporation",
+                    "numberOfEmployees": 10000,
+                    "ceo": "Mary",
+                    "rating": 3.6
+                },
+                {
+                    "name": "Small Startup",
+                    "numberOfEmployees": 3,
+                    "ceo": "null",
+                    "rating": 4.3
+                }
+            ]`
+
+        console.log(companies)
+        // Emulating a json string w/ backticks, use JSON.parse to convert it to a json object to access the data
+        console.log(JSON.parse(companies))
+        console.log(JSON.parse(companies)[0])
+        console.log(JSON.parse(companies)[1].name)
+    </script>
+</body>
+</html>
+
+<!-- [REF] https://www.youtube.com/watch?v=iiADhChRriM&ab_channel=WebDevSimplified -->

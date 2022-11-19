@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Sandbox</title>
+</head>
+
+<body>
+    <img src="slides.png">
+    <ul id="people"></ul>
+    <ul id="people2"></ul>
+
+    <script>
+        // EXAMPLE 1
+        var person1 = {
+            name: "Brad",
+            age: 35,
+            email: function () {
+                return 'brad@gmail.com'
+            }
+        }
+
+        console.log(person1.email())
+
+
+        // EXAMPLE 2
+        var person2 = {
+            name: "Brad",
+            age: 35,
+        }
+
+        person2 = JSON.stringify(person2) // to prepare the object as json and send through AJAX to a server (valid json is required), stringify the object
+        console.log(person2)
+
+        person2 = JSON.parse(person2) // converting the valid json string back by parsing into an object, and access its properties
+        console.log(person2.name)
+
+
+        // EXAMPLE 3
+        var person3 = {
+            name: "Brad",
+            age: 35,
+            address: {
+                street: "5 main st",
+                city: "Boston"
+            },
+            children: ["Brianna", "Nicolas"]
+        }
+
+        console.log(person3.address.street)
+        console.log(person3.children[0])
+
+
+        // EXAMPLE 4
+        var people = [
+            {
+                name: "Brad",
+                age: 35
+            },
+            {
+                name: "John",
+                age: 40
+            },
+            {
+                name: "Sara",
+                age: 25
+            },
+        ]
+
+        console.log(people[0])
+        console.log(people[1].name)
+
+
+        // EXAMPLE 5
+        for (var i = 0; i < people.length; i++) {
+            console.log(people[i].name)
+        }
+
+
+        // EXAMPLE 6
+        var output = ''
+        for (var i = 0; i < people.length; i++) {
+            output += '<li>' + people[i].name + '</li>'
+        }
+        document.getElementById('people').innerHTML = output;
+
+
+        // EXAMPLE 6
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // // Typical action to be performed when the document is ready:
+                // document.getElementById("demo").innerHTML = xhttp.responseText;
+
+                console.log(xhttp.responseText)
+
+                // EXAMPLE 7
+                var response = JSON.parse(xhttp.responseText) // wrap in JSON.parse to convert from json string format and avoid undefined message
+                console.log(response.people)
+
+                // EXAMPLE 8
+                var res = JSON.parse(xhttp.responseText)
+                var people = res.people
+                var output = ''
+                for (var i = 0; i < people.length; i++) {
+                    output += '<li>' + people[i].name + '</li>'
+                }
+                document.getElementById('people2').innerHTML = output;
+            }
+        };
+        xhttp.open("GET", "people.json", true);
+        xhttp.send();
+
+    </script>
+</body>
+
+</html>
+
+<!-- [REF] https://www.youtube.com/watch?v=wI1CWzNtE-M&ab_channel=TraversyMedia -->
