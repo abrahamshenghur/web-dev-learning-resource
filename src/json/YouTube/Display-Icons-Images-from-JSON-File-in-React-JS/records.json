@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "caption": "Icon 1",
+        "icon": "images/logo-1.png"
+    },
+    {
+        "id": 2,
+        "caption": "Icon 1",
+        "icon": "images/logo-2.png"
+    },
+    {
+        "id": 3,
+        "caption": "Icon 3",
+        "icon": "images/logo-3.png"
+    }
+]
